@@ -1,0 +1,61 @@
+#include <iostream>
+
+using namespace std;
+
+// Animal이라는 class를 만들어 부모 객체로 사용
+class Animal {
+
+public:
+	Animal() {}
+	virtual void makeSound() = 0;
+};
+
+// Dog, Cat, Cow 라는 class를 만들어 자식 객체로 사용
+class Dog : public Animal {
+
+public:
+	void makeSound() {
+
+		cout << "Dog barks : wal! wal! wal!" << endl;
+
+	}
+};
+
+
+class Cat : public Animal {
+
+public:
+	void makeSound() {
+
+		cout << "Cat meows : meow! meow! meow!" << endl;
+
+	}
+};
+
+class Cow : public Animal {
+
+public:
+	void makeSound() {
+
+		cout << "Cow barks : mmmae! mmmae! mmmae!" << endl;
+
+	}
+};
+
+int main() {
+
+  //동적 메모리 할당
+	Animal* animal_dynamic[3];
+	animal_dynamic[0] = new Dog();
+	animal_dynamic[1] = new Cat();
+	animal_dynamic[2] = new Cow();
+
+	for (int i = 0; i < 3; i++)
+		animal_dynamic[i]->makeSound();
+
+// 동적 메모리 해제
+	for (int i = 0; i < 3; i++)
+		delete animal_dynamic[i];
+
+	return 0;
+}
